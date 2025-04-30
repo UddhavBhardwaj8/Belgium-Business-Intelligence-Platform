@@ -30,6 +30,12 @@ def get_openai_client():
         st.stop()
 
     return OpenAI(api_key=api_key)
+    
+@st.cache_resource
+EMBED_MODEL = "text-embedding-3-small"
+GPT_MODEL = "gpt-4o"
+DATA_FILE = "belgium_final.csv"
+
 
 # ---------------------- SIDEBAR NAVIGATION ----------------------
 st.sidebar.title("🇧🇪 Belgium Business Platform")
