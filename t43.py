@@ -246,7 +246,7 @@ elif page == "📈 Growth Dashboard":
     # --- SECTION 1: Key Metrics ---
     st.markdown('<div id="section1"></div>', unsafe_allow_html=True)
     st.subheader("📊 Key Metrics")
-    global_year    = st.sidebar.selectbox("Year", [2023, 2022, 2021, 2020, 2019], index=1)
+    global_year    = st.sidebar.selectbox("Year", [2023, 2022, 2021, 2020, 2019])
     region_filter  = st.sidebar.multiselect("Region", df["Region"].dropna().unique())
     industry_filter= st.sidebar.multiselect("Industry", df["NACE Friendly Label"].dropna().unique())
     size_options   = ["All Sizes", "Small (<50)", "Medium (50-250)", "Large (>250)"]
