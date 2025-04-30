@@ -17,25 +17,29 @@ st.set_page_config(
 )
 
 # ---------------------- OpenAI Client ----------------------
+DATA_FILE   = os.path.join(os.path.dirname(__file__), "belgium_final.csv")
+EMBED_MODEL = "text-embedding-3-small"
+GPT_MODEL   = "gpt-4o"
+
+@st.cache_data
+def load_data():
+    if not os.path.exists(DATA_FILE):
+        st.error(f"Data file not found: {DATA_FILE} (cwd: {os.getcwd()})")
+        st.stop()
+    return pd.read_csv(DATA_FILE)
+
+@st.cache_resource
 def get_openai_client():
-    # 1) Try the [openai] section of Streamlit secrets
     if "openai" in st.secrets and "api_key" in st.secrets["openai"]:
         api_key = st.secrets["openai"]["api_key"]
     else:
-        # 2) Fallback to the OPENAI_API_KEY env var
         api_key = os.getenv("OPENAI_API_KEY")
 
     if not api_key:
-        st.error("OpenAI API key not found. Please set it in Streamlit secrets or via the OPENAI_API_KEY env var.")
+        st.error("OpenAI API key not found.")
         st.stop()
 
     return OpenAI(api_key=api_key)
-    
-@st.cache_resource
-EMBED_MODEL = "text-embedding-3-small"
-GPT_MODEL = "gpt-4o"
-DATA_FILE = "belgium_final.csv"
-
 
 # ---------------------- SIDEBAR NAVIGATION ----------------------
 st.sidebar.title("🇧🇪 Belgium Business Platform")
