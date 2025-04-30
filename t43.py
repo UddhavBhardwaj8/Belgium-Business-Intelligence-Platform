@@ -17,16 +17,19 @@ st.set_page_config(
 )
 
 # ---------------------- OpenAI Client ----------------------
-@st.cache_resource
 def get_openai_client():
-    # Try Streamlit secrets first, then fall back to ENV var
-    api_key = api_key
-    return OpenAI(api_key=api_key)
+    # 1) Try the [openai] section of Streamlit secrets
+    if "openai" in st.secrets and "api_key" in st.secrets["openai"]:
+        api_key = st.secrets["openai"]["api_key"]
+    else:
+        # 2) Fallback to the OPENAI_API_KEY env var
+        api_key = os.getenv("OPENAI_API_KEY")
 
-# Global constants
-EMBED_MODEL = "text-embedding-3-small"
-GPT_MODEL   = "gpt-4o"
-DATA_FILE   = "belgium_final.csv"
+    if not api_key:
+        st.error("OpenAI API key not found. Please set it in Streamlit secrets or via the OPENAI_API_KEY env var.")
+        st.stop()
+
+    return OpenAI(api_key=api_key)
 
 # ---------------------- SIDEBAR NAVIGATION ----------------------
 st.sidebar.title("🇧🇪 Belgium Business Platform")
