@@ -21,7 +21,6 @@ st.set_page_config(
 def get_openai_client():
     # Try Streamlit secrets first, then fall back to ENV var
     api_key = api_key
-        st.stop()  # prevent rest of app from running
     return OpenAI(api_key=api_key)
 
 # Global constants
