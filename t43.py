@@ -30,13 +30,19 @@ def load_data():
 
 @st.cache_resource
 def get_openai_client():
-    if "openai" in st.secrets and "api_key" in st.secrets["openai"]:
-        api_key = st.secrets["openai"]["api_key"]
-    else:
+    # 1) Try a top-level `api_key` in Streamlit secrets:
+    api_key = st.secrets.get("api_key")
+
+    # 2) Fallback to the OPENAI_API_KEY env var:
+    if not api_key:
         api_key = os.getenv("OPENAI_API_KEY")
 
+    # 3) Error out if still missing:
     if not api_key:
-        st.error("OpenAI API key not found.")
+        st.error(
+            "OpenAI API key not found. "
+            "Please add an `api_key` entry in Streamlit Secrets or set the OPENAI_API_KEY env var."
+        )
         st.stop()
 
     return OpenAI(api_key=api_key)
