@@ -1,7 +1,0 @@
-streamlit>=1.20.0
-pandas>=1.5.3
-plotly>=5.15.0
-numpy>=1.23.0
-faiss-cpu>=1.7.4       # or faiss-gpu if you have GPU support
-openai>=0.27.0
-streamlit-shadcn-ui>=0.1.0
