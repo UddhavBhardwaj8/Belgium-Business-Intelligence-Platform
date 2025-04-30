@@ -20,13 +20,7 @@ st.set_page_config(
 @st.cache_resource
 def get_openai_client():
     # Try Streamlit secrets first, then fall back to ENV var
-    api_key = st.secrets.get("openai", {}).get("api_key") or os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        st.error("""
-            **OpenAI API key not found.**  
-            Please add it to `.streamlit/secrets.toml` under `[openai]`  
-            or set the `OPENAI_API_KEY` environment variable.
-        """)
+    api_key = api_key
         st.stop()  # prevent rest of app from running
     return OpenAI(api_key=api_key)
 
