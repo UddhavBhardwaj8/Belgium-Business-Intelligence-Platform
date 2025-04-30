@@ -62,7 +62,7 @@ def go_to_growth():
     st.session_state.page = "📈 Growth Dashboard"
 
 def go_to_competitor():
-    st.session_state.page = "🔍 Competitor Finder"
+    st.session_state.page = "🤖 Competitor Finder Chatbot"
 
 def go_to_explorer():
     st.session_state.page = "🔎 Company Explorer"
