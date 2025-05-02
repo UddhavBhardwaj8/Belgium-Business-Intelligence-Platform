@@ -955,7 +955,7 @@ elif page == "ℹ️ Link to the ChatGPT Chatbot":
     
     """)
     st.markdown("""
-    This chatbot is powered by OpenAI's GPT-3.5 and is designed to assist you in finding high-growth firms and analyzing their competitive landscape.
+    This chatbot is powered by OpenAI's GPT and is designed to assist you in finding high-growth firms and analyzing their competitive landscape.
     You can ask questions about specific companies, industries, or regions, and the chatbot will provide insights based on the data available in this dashboard.
     If you have any questions or feedback, feel free to reach out to us!
                 
