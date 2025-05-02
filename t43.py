@@ -951,7 +951,7 @@ elif page == "🔎 Company Explorer":
 elif page == "ℹ️ Link to the ChatGPT Chatbot":
     st.title("ℹ️ Link to the ChatGPT Chatbot")
     st.markdown("""
-    [Click here to access the ChatGPT Chatbot](https://chatgpt.com/g/g-680e4c3e58288191971c5f8ef1ee0c40)
+    [Click here to access the ChatGPT Chatbot](https://chatgpt.com/g/g-68146951bb8c8191ae5bb9d3e0b66a23-belgium-group-a)
     
     """)
     st.markdown("""
